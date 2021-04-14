@@ -6,6 +6,7 @@ import java.util.function.IntConsumer;
 /**
  * Serializable IntConsumer.
  *
+ * @author Matrix42
  * @since 1.0.0
  */
 @FunctionalInterface

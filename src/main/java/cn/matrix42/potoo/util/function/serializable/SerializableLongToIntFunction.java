@@ -6,6 +6,7 @@ import java.util.function.LongToIntFunction;
 /**
  * Serializable LongToIntFunction.
  *
+ * @author Matrix42
  * @since 1.0.0
  */
 @FunctionalInterface

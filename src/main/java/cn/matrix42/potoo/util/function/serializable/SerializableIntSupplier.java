@@ -6,6 +6,7 @@ import java.util.function.IntSupplier;
 /**
  * Serializable IntSupplier.
  *
+ * @author Matrix42
  * @since 1.0.0
  */
 @FunctionalInterface
