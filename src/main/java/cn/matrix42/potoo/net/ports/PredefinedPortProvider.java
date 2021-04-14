@@ -6,6 +6,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @author Matrix42
+ * @since 1.0.0
+ */
 public class PredefinedPortProvider implements PortProvider {
 
     private final Iterator<Integer> current;
@@ -27,5 +31,10 @@ public class PredefinedPortProvider implements PortProvider {
             throw new RuntimeException("Run out of ports!");
         }
         return current.next();
+    }
+
+    @Override
+    public String providerType() {
+        return "predefined";
     }
 }

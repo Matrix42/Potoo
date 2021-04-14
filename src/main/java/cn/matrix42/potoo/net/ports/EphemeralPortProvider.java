@@ -3,6 +3,10 @@ package cn.matrix42.potoo.net.ports;
 import java.io.IOException;
 import java.net.ServerSocket;
 
+/**
+ * @author Matrix42
+ * @since 1.0.0
+ */
 public class EphemeralPortProvider implements PortProvider {
 
     @Override
@@ -17,5 +21,10 @@ public class EphemeralPortProvider implements PortProvider {
             //should not ever happen
             throw new RuntimeException("Could not provide ephemeral port.", e);
         }
+    }
+
+    @Override
+    public String providerType() {
+        return "ephemeral";
     }
 }
