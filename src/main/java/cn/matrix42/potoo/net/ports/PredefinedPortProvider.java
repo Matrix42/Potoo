@@ -26,7 +26,7 @@ public class PredefinedPortProvider implements PortProvider {
     }
 
     @Override
-    public synchronized int next() {
+    public int next() {
         if (!current.hasNext()) {
             throw new RuntimeException("Run out of ports!");
         }
