@@ -3,6 +3,9 @@ package cn.matrix42.potoo.lang;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+import cn.matrix42.potoo.annotation.NotNull;
+import cn.matrix42.potoo.annotation.Nullable;
+
 /**
  * @author Matrix42
  * @since 1.0.0
@@ -16,7 +19,9 @@ public class ArrayUtils {
      * @return projected array.
      * @since 1.0.0
      */
-    public static <T> T[] project(T[] array, int[] indexes) {
+    public static <T> T[] project(@NotNull T[] array, @NotNull int[] indexes) {
+        Preconditions.checkNotNull(array);
+        Preconditions.checkNotNull(indexes);
         for (int index : indexes) {
             Preconditions.checkArgument(index < array.length);
         }
@@ -37,7 +42,7 @@ public class ArrayUtils {
      * @return a string representation of array.
      * @since 1.0.0
      */
-    public static String toString(Object[] array) {
+    public static String toString(@Nullable Object[] array) {
         return Arrays.toString(array);
     }
 
