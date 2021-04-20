@@ -43,4 +43,20 @@ public class Preconditions {
         return reference;
     }
 
+    /**
+     * Checks the given boolean condition, and throws an {@code IllegalArgumentException} if
+     * the condition is not met (evaluates to {@code false}).
+     *
+     * @param condition The condition to check
+     *
+     * @throws IllegalArgumentException Thrown, if the condition is violated.
+     *
+     * @since 1.0.0
+     */
+    public static void checkArgument(boolean condition) {
+        if (!condition) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }
