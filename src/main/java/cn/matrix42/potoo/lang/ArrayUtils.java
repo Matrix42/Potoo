@@ -56,7 +56,7 @@ public class ArrayUtils {
         Random random = new Random();
         int n = array.length;
         for (int i = 0; i < array.length; i++) {
-            int t = i + random.nextInt() % (n - i);
+            int t = i + random.nextInt(n - i);
             //每次随机出i~n-1之间的下标
             swap(array, i, t);
         }
