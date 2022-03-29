@@ -9,12 +9,19 @@ import java.util.Set;
 
 import cn.matrix42.potoo.lang.StringUtils;
 
-public class JsonMap extends JsonNode {
+public class JsonObject extends JsonNode {
 
     protected Map<String, JsonNode> map = new LinkedHashMap<>();
 
-    public JsonMap(String key) {
+    public JsonObject(String key) {
         super(key);
+    }
+
+    public JsonObject(String key, boolean nullValue) {
+        super(key);
+        if (nullValue) {
+            map = null;
+        }
     }
 
     @Override
@@ -37,6 +44,25 @@ public class JsonMap extends JsonNode {
         return false;
     }
 
+    public JsonObject add(JsonLiteral jsonLiteral) {
+        addInternal(jsonLiteral);
+        return this;
+    }
+
+    public JsonObject add(JsonArray jsonArray) {
+        addInternal(jsonArray);
+        return this;
+    }
+
+    public JsonObject add(JsonObject jsonObject) {
+        addInternal(jsonObject);
+        return this;
+    }
+
+    private void addInternal(JsonNode jsonNode) {
+        map.put(jsonNode.getKey(), jsonNode);
+    }
+
     public Set<String> getKeySet() {
         return Collections.unmodifiableSet(map.keySet());
     }
@@ -56,7 +82,7 @@ public class JsonMap extends JsonNode {
             sb.append("\"").append(entry.getKey()).append("\"")
                 .append(":")
                 .append(entry.getValue().toNormalJson());
-            if (i <= entrySet.size() - 1) {
+            if (i < entrySet.size() - 1) {
                 sb.append(",");
             }
             i++;
@@ -71,7 +97,6 @@ public class JsonMap extends JsonNode {
         sb.append(StringUtils.repeat(' ', 2 * level));
         sb.append("\"").append(key).append("\"").append(":");
         sb.append("{\n");
-        sb.append(StringUtils.repeat(' ', 2 * level));
         Set<Entry<String, JsonNode>> entrySet = map.entrySet();
         int i = 0;
         for (Entry<String, JsonNode> entry : entrySet) {
@@ -81,8 +106,10 @@ public class JsonMap extends JsonNode {
             }
             i++;
         }
-        sb.append("\n");
-        sb.append(StringUtils.repeat(' ', 2 * level));
+        if (!entrySet.isEmpty()) {
+            sb.append("\n");
+            sb.append(StringUtils.repeat(' ', 2 * level));
+        }
         sb.append("}");
         return sb.toString();
     }

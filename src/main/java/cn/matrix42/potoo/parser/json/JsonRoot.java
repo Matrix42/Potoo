@@ -5,7 +5,7 @@ import java.util.Set;
 
 import cn.matrix42.potoo.lang.StringUtils;
 
-public class JsonRoot extends JsonMap {
+public class JsonRoot extends JsonObject {
 
     public JsonRoot() {
         super(null);
@@ -42,8 +42,10 @@ public class JsonRoot extends JsonMap {
             }
             i++;
         }
-        sb.append("\n");
-        sb.append(StringUtils.repeat(' ', 2 * level));
+        if (!entrySet.isEmpty()) {
+            sb.append("\n");
+            sb.append(StringUtils.repeat(' ', 2 * level));
+        }
         sb.append("}");
         return sb.toString();
     }
