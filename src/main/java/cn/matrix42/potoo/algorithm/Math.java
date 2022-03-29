@@ -15,12 +15,13 @@ public class Math {
         final float threehalfs = 1.5f;
         x2 = number * 0.5f;
         y = number;
-        //i = * ( long * ) &y ;
+        //i = * ( long * ) &y ; // evil floating point bit level hacking
         i = Float.floatToRawIntBits(y);
-        i = 0x5f3759df - (i >> 1);
+        i = 0x5f3759df - (i >> 1); // what the fuck?
         //  y = * ( float * ) &i;
         y = Float.intBitsToFloat(i);
-        y = y * (threehalfs - (x2 * y * y));
+        y = y * (threehalfs - (x2 * y * y)); // 1st iteration
+        //y = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed
         return y;
     }
 
