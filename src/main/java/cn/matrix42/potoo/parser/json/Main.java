@@ -4,17 +4,20 @@ public class Main {
 
     public static void main(String[] args) {
 
+        JsonObject jsonObject = new JsonObject()
+            .add("a", JsonLiteral.of(1))
+            .add("b", JsonLiteral.of(12.0));
+
         JsonNode jsonNode = Json.buildJson()
-            .addJsonLiteral(JsonLiteral.of("message", "succcess"))
-            .addJsonLiteral(JsonLiteral.of("mes", "succcess"))
-            .addJsonObject(new JsonObject("map")
-                .add(JsonLiteral.of("a", 1))
-                .add(JsonLiteral.of("b", 12.0)))
-            .addJsonArray(new JsonArray("array", ObjectType.JSON_LITERAL)
-                .add(JsonLiteral.of("a", 1)))
+            .addJsonLiteral("message", JsonLiteral.of( "succcess"))
+            .addJsonLiteral("mes", JsonLiteral.of( "succcess"))
+            .addJsonObject("map", jsonObject)
+            .addJsonArray("array", new JsonArray(ObjectType.JSON_OBJECT)
+                .add(jsonObject)
+                .add(jsonObject))
             .build();
 
-        System.out.println(jsonNode.toJsonString(true));
+        System.out.println(jsonNode.toJsonString());
 
     }
 

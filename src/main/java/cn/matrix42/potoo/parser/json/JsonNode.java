@@ -1,14 +1,16 @@
 package cn.matrix42.potoo.parser.json;
 
+import cn.matrix42.potoo.lang.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class JsonNode implements JsonElement {
 
-    protected String key;
-
-    public JsonNode(String key) {
-        this.key = key;
+    public JsonNode() {
     }
 
-    public abstract boolean isJsonMap();
+    public abstract boolean isJsonObject();
 
     public abstract boolean isJsonArray();
 
@@ -18,6 +20,14 @@ public abstract class JsonNode implements JsonElement {
 
     protected abstract String toPrettyJson(int level);
 
+    protected String align(int level) {
+        return StringUtils.repeat(' ', 2 * level);
+    }
+
+    public List<String> read(String path) {
+        return new ArrayList<>();
+    }
+
     @Override
     public String toJsonString() {
         return toNormalJson();
@@ -26,13 +36,10 @@ public abstract class JsonNode implements JsonElement {
     @Override
     public String toJsonString(boolean pretty) {
         if (pretty) {
-            return toPrettyJson(0);
+            return toPrettyJson(1);
         } else {
             return toNormalJson();
         }
     }
 
-    public String getKey() {
-        return key;
-    }
 }

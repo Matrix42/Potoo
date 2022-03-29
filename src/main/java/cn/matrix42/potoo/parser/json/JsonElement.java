@@ -2,7 +2,7 @@ package cn.matrix42.potoo.parser.json;
 
 public interface JsonElement {
 
-    boolean isJsonMap();
+    boolean isJsonObject();
 
     boolean isJsonArray();
 

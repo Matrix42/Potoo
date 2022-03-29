@@ -8,33 +8,28 @@ public class JsonLiteral extends JsonNode {
 
     protected Serializable value;
 
-    public JsonLiteral(String key, Integer value) {
-        super(key);
+    public JsonLiteral(Integer value) {
         this.value = value;
     }
 
-    public JsonLiteral(String key, Long value) {
-        super(key);
+    public JsonLiteral(Long value) {
         this.value = value;
     }
 
-    public JsonLiteral(String key, Float value) {
-        super(key);
+    public JsonLiteral(Float value) {
         this.value = value;
     }
 
-    public JsonLiteral(String key, Double value) {
-        super(key);
+    public JsonLiteral(Double value) {
         this.value = value;
     }
 
-    public JsonLiteral(String key, String value) {
-        super(key);
+    public JsonLiteral(String value) {
         this.value = value;
     }
 
     @Override
-    public boolean isJsonMap() {
+    public boolean isJsonObject() {
         return false;
     }
 
@@ -55,7 +50,6 @@ public class JsonLiteral extends JsonNode {
     @Override
     protected String toNormalJson() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\"").append(key).append("\"").append(":");
         sb.append(valueToString());
         return sb.toString();
     }
@@ -63,8 +57,6 @@ public class JsonLiteral extends JsonNode {
     @Override
     protected String toPrettyJson(int level) {
         StringBuilder sb = new StringBuilder();
-        sb.append(StringUtils.repeat(' ', 2 * level));
-        sb.append("\"").append(key).append("\"").append(":");
         sb.append(valueToString());
         return sb.toString();
     }
@@ -129,24 +121,24 @@ public class JsonLiteral extends JsonNode {
     //static
     //////////////////
 
-    public static JsonLiteral of(String key, Integer literal) {
-        return new JsonLiteral(key, literal);
+    public static JsonLiteral of(Integer literal) {
+        return new JsonLiteral(literal);
     }
 
-    public static JsonLiteral of(String key, Long literal) {
-        return new JsonLiteral(key, literal);
+    public static JsonLiteral of(Long literal) {
+        return new JsonLiteral(literal);
     }
 
-    public static JsonLiteral of(String key, Float literal) {
-        return new JsonLiteral(key, literal);
+    public static JsonLiteral of(Float literal) {
+        return new JsonLiteral(literal);
     }
 
-    public static JsonLiteral of(String key, Double literal) {
-        return new JsonLiteral(key, literal);
+    public static JsonLiteral of(Double literal) {
+        return new JsonLiteral(literal);
     }
 
-    public static JsonLiteral of(String key, String literal) {
-        return new JsonLiteral(key, literal);
+    public static JsonLiteral of(String literal) {
+        return new JsonLiteral(literal);
     }
 
 }
