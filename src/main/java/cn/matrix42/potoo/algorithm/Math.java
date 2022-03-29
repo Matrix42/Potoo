@@ -3,7 +3,7 @@ package cn.matrix42.potoo.algorithm;
 public class Math {
 
     /**
-     * 牛顿迭代法求平方根倒数java实现.
+     * 牛顿迭代法求近似平方根倒数java实现.
      * 原作者:卡马克
      * @link https://zhuanlan.zhihu.com/p/29075553
      * @param number input
